@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Orals - 2&nbsp; Chapter 2: GammaGateR</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./Missing Data Imputation in mIF.html" rel="next">
+<link href="./Introduction to mIF.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating slimcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./GammaGateR.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Chapter 2: GammaGateR</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Orals</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Statistical Analysis in Multiplexed Immunofluorescence Imaging</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Introduction to mIF.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Chapter 1: Introduction to Multiplexed Immunofluorescence Images</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./GammaGateR.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Chapter 2: GammaGateR</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Missing Data Imputation in mIF.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Chapter 3: Missing data imputation in mIF imaging</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Chapter 4: Future directions</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#research-question" id="toc-research-question" class="nav-link active" data-scroll-target="#research-question"><span class="header-section-number">2.1</span> Research question</a></li>
+  <li><a href="#previous-works" id="toc-previous-works" class="nav-link" data-scroll-target="#previous-works"><span class="header-section-number">2.2</span> Previous works</a></li>
+  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods"><span class="header-section-number">2.3</span> Methods</a>
+  <ul class="collapse">
+  <li><a href="#gammagater" id="toc-gammagater" class="nav-link" data-scroll-target="#gammagater"><span class="header-section-number">2.3.1</span> GammaGateR</a></li>
+  <li><a href="#cfgmm" id="toc-cfgmm" class="nav-link" data-scroll-target="#cfgmm"><span class="header-section-number">2.3.2</span> cfGMM</a></li>
+  </ul></li>
+  <li><a href="#simulation" id="toc-simulation" class="nav-link" data-scroll-target="#simulation"><span class="header-section-number">2.4</span> Simulation</a></li>
+  <li><a href="#analysis" id="toc-analysis" class="nav-link" data-scroll-target="#analysis"><span class="header-section-number">2.5</span> Analysis</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Chapter 2: GammaGateR</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="research-question" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="research-question"><span class="header-section-number">2.1</span> Research question</h2>
+<p>Before important spatial insights can be gleaned using statistical methods, mIF images undergo an intensive preprocessing pipeline to obtain single-cell measurements. While there are various steps included in the pipeline such as image registration, single-cell segmentation, quantification, and batch correction, cell phenotyping is typically the final step before downstream analyses on the cell-level data, similarly to other single-cell assays. Cell phenotyping identifies individual cell phenotypes from the measured marker expression values of the cell and directly affects the subsequent cell population analysis results.</p>
+<p>The two most common approaches for cell phenotyping in mIF are manual gating and graph-based multivariate clustering. In manual gating, each sample is visualized separately to determine a threshold, and super-threshold cells are labeled as marker positive. This procedure is repeated for all marker channels and slides, and the phenotypes are determined by combining combinations of marker-positive cells. Alternatively, multivariate graph-based clustering is adapted from other single-cell assays. This approach first performs cell clustering, then assigns a phenotype to each cell group based on their average expression profile. Multivariate graph-based clustering is implemented with various modifications across many software packages. Unfortunately, both methods are labor intensive, and their accuracy suffers from image noise and spatial artifacts in mIF images that cause marker expression histograms to appear continuous or uni-modal . As a result, both phenotyping methods possess shortcomings that cannot be ignored. On one hand, manual gating can be subjective. On the other hand, graph-based clustering results are prone to over-clustering and producing poor separation between clusters.</p>
+</section>
+<section id="previous-works" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="previous-works"><span class="header-section-number">2.2</span> Previous works</h2>
+<p>The challenges described above are well recognized and there are a few methods and software developed that attempt to automate cell phenotyping for mIF images. For example, CellSighter is a recently proposed supervised deep-learning algorithm for cell phenotyping that requires a “gold standard” training dataset. Another recent solution, ASTIR (Automated assignment of cell identity from single-cell multiplexed imaging and proteomic data), is a fast unsupervised approach that defines cell phenotypes from segmented cell-level data by using a neural network-based mixture model assuming a multivariate log-normal distribution. Instead of binary outputs like in classification methods, ASTIR returns posterior probabilities of different cell types for each cell. This type of output is advantageous because it offers more information than nominal cell types and leaves cell labeling to the clinician’s discretion. Lastly, Ahmadian et al.&nbsp;treat the analysis as a pixel classification problem and design a single-step framework for mIF phenotyping that is integrated with other preprocessing steps.</p>
+<p>Nevertheless, inconsistencies persist in the results rendered by these learning-based methods when applied across markers, slides, batches, and datasets. These inconsistencies result from the immense variation in the cell-level distribution of phenotyping markers that are often too nuanced to be removed by existing batch correction methods. For these reasons, it is difficult to fully automate the cell phenotyping process, despite the availability of automated tools, and manual gating is still used to perform cell phenotyping because it is easy to visualize and evaluate the quality of the phenotype.</p>
+</section>
+<section id="methods" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="methods"><span class="header-section-number">2.3</span> Methods</h2>
+<p>Because automated methods cannot be run without evaluation and supervised methods require a gold-standard dataset, no method is truly fully automated. As a solution, we develop an explicitly semi-automated algorithm called GammaGateR. GammaGateR allows the user to easily perform cell phenotyping, visualize results, and conduct interpretable quality control while reducing manual labor. Based on a novel closed-form Gamma mixture model (cfGMM), GammaGateR is a probabilistic model that is fitted to each channel and slide separately, and outputs positive-component probabilities for each marker. These can then be easily thresholded and combined for semi-automated marker gating or input directly into downstream analysis. GammaGateR has important technical advantages, including 1) improved computation time and model convergence due to its novel closed-form property, and 2) high consistency and reproducibility for phenotyping results across mIF data batches due to incorporation of parameter boundary constraints. In applications on real-world mIF data, we find that GammaGateR has fast and consistent results across many slides and markers. We provide an open-source implementation of our method in the new GammaGateR R package (https://github.com/jiangmeirubyxiong/gammagater).</p>
+<section id="gammagater" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="gammagater"><span class="header-section-number">2.3.1</span> GammaGateR</h3>
+<p>The GammaGateR algorithm is unique to existing methods for its focus on parsimoniously modeling cell-level marker expression densities. This approach yields tailored-to-slide model estimation in cell-level mIF data where marker expression distributions can vary substantially across slides. The algorithm uses a zero-inflated two-component GMM to model marker expression for each slide. The Gamma mixture model naturally identifies marker-positive and marker-negative cell distributions and returns the probability of belonging to the marker-positive cell distribution for each cell. The returned probabilities can either be used directly in subsequent analysis or combined and dichotomized to define cell phenotypes. GammaGateR incorporates user-specified constraints to provide consistent model fit across a large number of slides. The model evaluation methods included in GammaGateR allow the user to evaluate the constraints and quality check results. The power source of GammaGateR is the closed-form Gamma mixture model, which is a novel approach to phenotyping for mIF data that makes it more computationally efficient than traditional GMMs.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Figure1.png" class="img-fluid figure-img" style="width:120.0%"></p>
+<figcaption class="figure-caption">Figure 1</figcaption>
+</figure>
+</div>
+</section>
+<section id="cfgmm" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="cfgmm"><span class="header-section-number">2.3.2</span> cfGMM</h3>
+<p>For mIF data, we use the GMM to fit cell marker expression values as a weighted sum of different probability distributions that represent unique cell populations [35]. The Gamma distribution is an excellent model for marker values because the domain of the Gamma distribution is strictly positive and it has the flexibility to model the varying skewed densities seen in mIF marker values (Figure 1.5.a). However, GMMs are not scalable for mIF image data, because they rely on computationally inefficient numerical methods to obtain the maximum likelihood estimator (MLE). The slow convergence of the MLE for the GMM makes it prohibitive to apply across a large number of channels, slides, and cells. As a solution, we develop a closed-form GMM (cfGMM; https://github.com/jiangmeirubyxiong/cfgmm) estimation procedure based on a recently developed estimator for the Gamma distribution [36]. In addition, to improve computational efficiency, the cfGMM has the benefit of allowing prior constraints on model parameters. With the cfGMM in GammaGateR, we enable the flexibility to include a biologically meaningful range for the mode of each component in the Gamma mixture model. This way, users of GammaGateR can restrict estimation to biologically meaningful values.</p>
+<section id="derivation" class="level4" data-number="2.3.2.1">
+<h4 data-number="2.3.2.1" class="anchored" data-anchor-id="derivation"><span class="header-section-number">2.3.2.1</span> Derivation</h4>
+<p>We assume the data is a random sample <span class="math inline">\(x_1, \ldots, x_n\)</span> from a <span class="math inline">\(K\)</span> component generalized gamma mixture distribution. The density function of <span class="math inline">\(X\)</span> is <span class="math display">\[\begin{equation*}
+P(X=x)=\sum_{k=1}^K \lambda_k f(x; a_k, b_k, \gamma_k).
+\end{equation*}\]</span> and the log-likelihood of the dataset is <span class="math display">\[\begin{equation}
+    \ell(\mathbf{x}|\mathbf{a},\mathbf{b},\pmb{\lambda})=\sum^n_{i=1}\log\left\{\sum^K_{k=1}\lambda_kf(x_i|a_k,b_k)\right\}
+    \label{eq:loglikelihood}
+\end{equation}\]</span> For each generalized gamma component <span class="math inline">\(k\)</span>, <span class="math inline">\(\lambda_k\in [0,1]\)</span> are the mixture parameters, <span class="math inline">\(\sum_{k} \lambda_k = 1\)</span>; <span class="math inline">\(f\)</span> denotes the generalized gamma density function; <span class="math inline">\(a_k, b_k, \gamma_k\)</span> are the parameters for the generalized gamma.</p>
+<p>Here, we use the expectation maximization (EM) algorithm [dempster_maximum_1977] for parameter estimation. EM algorithm is a standard approach for parameter estimation in mixture models. It introduces the latent multinomial variable <span class="math inline">\(Z_{i} = (Z_{i1}, \ldots, Z_{iK})\)</span> into the model and maximizes the expected value of the complete data likelihood [dempster_maximum_1977]. The expectation of the complete data likelihood to be maximized for the generalized gamma distribution is <span class="math display">\[\begin{equation*}
+\mathbb{E}_Z \ell(x \mid Z) = \sum_{i=1}^n \sum_{k=1}^K z_{ik} \log f(x_i; a_k, b_k,\gamma_k),
+\end{equation*}\]</span> where <span class="math display">\[\begin{equation}
+\label{eq:lambdaFormula}
+    z_{ik} = \mathbb{P}(Z_{ik}=1 \mid x_i;\pmb{ a, b, \gamma} ) =\frac{f(x_i|a_k, b_k, \gamma_k)}{\displaystyle\sum^K_{j=1}f(x_i|a_j, b_j, \gamma_k)},
+\end{equation}\]</span> <span class="math inline">\(\mathbf{a} = (a_1, a_2, \ldots, a_K)\)</span>, and <span class="math inline">\(\mathbf{b}\)</span>, <span class="math inline">\(\pmb \lambda\)</span> are similarly defined vectors.</p>
+<p>From here, the maximization of the expectation is now analogous to the maximization of generalized gamma distribution for each component of the mixture model.</p>
+<p>The expectation of log-likelihood is <span class="math display">\[\begin{equation}
+    \mathbb E_{z|x}[\log(L(\mathbf{x}|\mathbf{z}))]=\sum^{n}_{i=1}\sum^{K}_{k=1}z_{ik}\log f_k(x_i) \label{eq1}
+\end{equation}\]</span> and <span class="math display">\[\begin{equation}
+f_k(x)=G(a_k,b_k,{\gamma_k})=\frac{\lambda_k x^{a_k{\gamma_k}-1}exp\{(-x/b_k)^{{\gamma_k}}\}}{b_k^{a_k{\gamma_k}}\Gamma(a_k)} \label{eq2}
+\end{equation}\]</span> where <span class="math inline">\({\gamma_k}=1\)</span>.</p>
+<p>By eqref{eq1}, eqref{eq2} The expected joint log-likelihood is</p>
+<p><span class="math display">\[\begin{multline} \label{eq3}
+     \mathbb E_{z|x}[\log(L(\mathbf{x}|\mathbf{z}))]=\sum^{K}_{k=1}\sum^{n}_{i=1}z_{ik}\left( \log{\gamma_k}-a_k{\gamma_k} \log b_k-log\Gamma(a_k)+(a_k{\gamma_k}-1)\log X_i-(\frac{X_i}{b_k})^{{\gamma_k}} \right)
+\end{multline}\]</span></p>
+<p>The estimators of each of the <span class="math inline">\(K\)</span> terms of the expected joint log-likelihood are derived as follows:</p>
+<p>first take derivative of the expression from eqref{eq3} <span class="math display">\[\begin{align*}
+    \sum^{n}_{i=1} z_{ik}\left( \log{\gamma_k}-a_k{\gamma_k} \log b_k-\log\Gamma(a_k)+(a_k{\gamma_k}-1)\log X_i-\left(\frac{X_i}{b_k}\right)^{\gamma_k} \right)
+\end{align*}\]</span> with respect to <span class="math inline">\(a_k, b_k, {\gamma_k}\)</span> separately:<br>
+<span class="math display">\[\begin{align}\label{eq4}
+      \frac{\partial \mathbb E_{z|x}[\log(L(\mathbf{x}|\mathbf{z}))]}{\partial a_k}
+      =\sum^{n}_{i=1} z_{ik}(-\psi(a_k)-{\gamma_k} \log b_k+{\gamma_k} X_i)=0
+  \end{align}\]</span> Note that <span class="math inline">\(\psi(x)=\displaystyle\frac{d }{dx}\log\Gamma(x)\)</span> is digamma function. <span class="math display">\[\begin{align}\label{eq5}
+    \frac{\partial \mathbb E_{z|x}[\log(L(\mathbf{x}|\mathbf{z}))]}{\partial b_k}
+    =\sum^{n}_{i=1}(z_{ik})(-a_k{\gamma_k}/b_k+{\gamma_k} X_i^{{\gamma_k}} b_k^{-{\gamma_k}-1})=0
+\end{align}\]</span> <span class="math display">\[\begin{align}\label{eq6}
+    \frac{\partial \mathbb E_{z|x}[\log(L(\mathbf{x}|\mathbf{z}))]}{\partial {\gamma_k}}
+    =\sum^{n}_{i=1}z_{ik}\left(\frac{1}{\gamma_k}-a_k\log b_k+a_k\log X_i-\left(\frac{X_i}{b_k}\right)^{\gamma_k} \log\frac{X_i}{b_k}\right)=0
+\end{align}\]</span> Among which, eqref{eq5} can be solved as <span class="math display">\[\begin{equation} \label{eq7}
+    \hat b_k(a_k,{\gamma_k})=\left(\frac{\displaystyle\sum^{n}_{i=1}z_{ik}X_i^{\gamma_k}}{a_k\displaystyle\sum^{n}_{i=1}z_{ik}}\right)^{1/{\gamma_k}}
+\end{equation}\]</span> Substitute eqref{eq7} into eqref{eq6}: <span class="math display">\[\begin{align*}
+    &amp;\frac{\partial \mathbb E_{z|x}[\log(L(\mathbf{x}|\mathbf{z}))]}{\partial {\gamma_k}}\\
+    &amp;=\sum^{n}_{i=1}z_{ik}/{\gamma_k}+\sum^{n}_{i=1}a_kz_{ik}\log(\frac{X_i}{b_k})-\sum^{n}_{i=1}z_{ik}(\frac{X_i}{b_k}) ^{\gamma_k} \log(\frac{X_i}{b_k})\\
+    &amp;=\sum^{n}_{i=1}z_{ik}/{\gamma_k}+\sum^{n}_{i=1}a_kz_{ik}(\log X_i-\log b_k)-b_k^{-{\gamma_k}}\sum^{n}_{i=1}z_{ik}X_i ^{\gamma_k} (\log X_i-\log b_k)\\
+    &amp;=\sum^{n}_{i=1}z_{ik}/{\gamma_k}+\sum^{n}_{i=1}a_kz_{ik}\log X_i-\log b_k\sum^{n}_{i=1}a_kz_{ik}-b_k^{-{\gamma_k}}\sum^{n}_{i=1}z_{ik}X_i ^{\gamma_k} \log X_i+b_k^{-{\gamma_k}}\log b_k\sum^{n}_{i=1}z_{ik}X_i ^{\gamma_k}\\
+    &amp;=\sum^{n}_{i=1}z_{ik}/{\gamma_k}+\sum^{n}_{i=1}a_kz_{ik}\log X_i-\log b_k\sum^{n}_{i=1}a_kz_{ik}-b_k^{-{\gamma_k}}\sum^{n}_{i=1}z_{ik}X_i ^{\gamma_k} \log X_i
+    \frac {a_k\displaystyle\sum^{n}_{i=1}z_{ik}}{\displaystyle\sum^{n}_{i=1}z_{ik}X_i^{\gamma_k}} \log b_k\displaystyle\sum^{n}_{i=1}z_{ik}X_i ^{\gamma_k}\\
+    &amp;=\sum^{n}_{i=1}z_{ik}/{\gamma_k}+\sum^{n}_{i=1}a_kz_{ik}\log X_i-\log b_k\sum^{n}_{i=1}a_kz_{ik}-b_k^{-{\gamma_k}}\sum^{n}_{i=1}z_{ik}X_i ^{\gamma_k} \log X_i+{a_k\sum^{n}_{i=1}z_{ik}}\log b_k\\
+    &amp;=\sum^{n}_{i=1}z_{ik}/{\gamma_k}+a_k\sum^{n}_{i=1}z_{ik}\log X_i-\frac {a_k\displaystyle\sum^{n}_{i=1}z_{ik}}{\displaystyle\sum^{n}_{i=1}z_{ik}X_i^{\gamma_k}}\sum^{n}_{i=1}z_{ik}X_i ^{\gamma_k} \log X_i\\
+    &amp;=\sum^{n}_{i=1}z_{ik}/{\gamma_k}+a_k\left(\sum^{n}_{i=1}z_{ik}\log X_i-\frac {\displaystyle\sum^{n}_{i=1}z_{ik}}{\displaystyle\sum^{n}_{i=1}z_{ik}X_i^{\gamma_k}}\sum^{n}_{i=1}z_{ik}X_i ^{\gamma_k} \log X_i\right)=0\\
+\end{align*}\]</span><br>
+Solving this, we have <span class="math display">\[\begin{equation} \label{eq8}
+      \hat a_k ({\gamma_k})=\displaystyle\frac{\displaystyle\sum^{n}_{i=1}\displaystyle\frac{z_{ik}}{{\gamma_k}}}
+      {\displaystyle\frac{\displaystyle\sum^{n}_{i=1}z_{ik}}{\displaystyle\sum^{n}_{i=1}z_{ik}X_i^{\gamma_k}}\sum^{n}_{i=1}z_{ik}X_i ^{\gamma_k} \log X_i-\sum^{n}_{i=1}z_{ik}\log X_i}
+  \end{equation}\]</span></p>
+<p>Plug <span class="math inline">\({\gamma_k}=1\)</span> in eqref{eq8}, we now have <span class="math display">\[\begin{align}
+  \hat a_k ({\gamma_k}=1)&amp;=\displaystyle\frac{\displaystyle\sum^{n}_{i=1}z_{ik}}{\displaystyle\frac {\displaystyle\sum^{n}_{i=1}z_{ik}}{\displaystyle\sum^{n}_{i=1}z_{ik}X_i}\sum^{n}_{i=1}z_{ik}X_i  \log X_i-\sum^{n}_{i=1}z_{ik}\log X_i}\nonumber\\
+  &amp;=\left(\frac {\sum^{n}_{i=1}z_{ik}X_i\log X_i}{\sum^{n}_{i=1}z_{ik}X_i}-\frac{\sum^{n}_{i=1}z_{ik}\log X_i}{\sum^{n}_{i=1}z_{ik}}\right)^{-1}\nonumber\\
+  &amp;=\frac{\displaystyle\sum^{n}_{i=1}z_{ik}\displaystyle\sum^{n}_{i=1}z_{ik}X_i}{\displaystyle\sum^{n}_{i=1}z_{ik}\displaystyle\sum^{n}_{i=1}z_{ik}X_i\log X_i-\displaystyle\sum^{n}_{i=1}z_{ik}\log X_i\displaystyle\sum^{n}_{i=1}z_{ik}X_i}\label{eq:ak}
+  \end{align}\]</span> <span class="math display">\[\begin{align}
+        \hat b_k(\hat a_k,{\gamma_k}=1)&amp;=\frac{\displaystyle\sum^{n}_{i=1}z_{ik}X_i}{\hat a_k\displaystyle\sum^{n}_{i=1}z_{ik}} \nonumber\\
+        %&amp;=\displaystyle\frac{\displaystyle\sum^{n}_{i=1}z_{ik}X_i}{\displaystyle\frac{\displaystyle\sum^{n}_{i=1}z_{ik}X_i\displaystyle\sum^{n}_{i=1}z_{ik}}{\displaystyle\sum^{n}_{i=1}z_{ik}\displaystyle\sum^{n}_{i=1}z_{ik}X_i\log X_i-\displaystyle\sum^{n}_{i=1}z_{ik}\log X_i\displaystyle\sum^{n}_{i=1}z_{ik}X_i}\displaystyle\sum^{n}_{i=1}z_{ik}} \nonumber\\
+        &amp;=\frac{\displaystyle\sum^{n}_{i=1}z_{ik}\displaystyle\sum^{n}_{i=1}z_{ik}X_i\log X_i-\displaystyle\sum^{n}_{i=1}z_{ik}\log X_i\displaystyle\sum^{n}_{i=1}z_{ik}X_i}{\left(\displaystyle\sum^{n}_{i=1}z_{ik}\right)^2} \label{eq:bk}
+  \end{align}\]</span> In addition, <span class="math inline">\(\hat {\lambda}_k\)</span> can simply be estimated as <span class="math display">\[\begin{equation}
+    \hat {\lambda}_k =\frac{\displaystyle\sum^{n}_{i=1}z_{ik}}{n} \label{eq:lambdak}
+\end{equation}\]</span></p>
+<p>It is worth noting that we are not maximizing the exact Gamma distribution, therefore the algorithm we devise here is an EM-type algorithm.</p>
+</section>
+</section>
+</section>
+<section id="simulation" class="level2 page-columns page-full" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="simulation"><span class="header-section-number">2.4</span> Simulation</h2>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Figure2.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure 2</figcaption>
+</figure>
+</div>
+</div></div><p>To compare the bias and compute time of the closed-form GMM to maximum likelihood GMM implementation, we run the cfGMM, the constrained cfGMM, and the GMM to evaluate bias and variance in a sample size of 10,000 across 1,000 simulations. We simulate a two-component mixture model with parameters <span class="math inline">\(\pmb{\lambda} = (0.3, 0.7), \pmb{a} = (0.5, 8), \pmb{b} = (0.5, 1/3)\)</span>. For the constrained estimator, we restrict the mode of each component to be in the range <span class="math inline">\((-\infty, 0)\)</span> and <span class="math inline">\((0,5)\)</span> for marker negative and marker positive components, respectively, which include the true mode for each component, <span class="math inline">\(0\)</span> (no mode) and <span class="math inline">\(7/3\)</span>.</p>
+<p>Both closed-form estimation procedures have substantially faster computation time than the MLE (Figure 2a) while maintaining similarly low bias (Figure 2b). The sample size used in the simulation is roughly similar to that of the cell-level mIF image dataset, which further proves that cfGMM brings computation efficiency to our target application. The closed-form GMM, therefore, enables computationally feasible, precise, and flexible model estimation when applied to a large number of channels and slides using GammaGateR. It is also worth noting that the constrained cfGMM converges slightly faster than without constraints. This implies that when using cfGMM, computational cost can be reduced with proper knowledge of biological priors.</p>
+</section>
+<section id="analysis" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="analysis"><span class="header-section-number">2.5</span> Analysis</h2>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./Introduction to mIF.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Chapter 1: Introduction to Multiplexed Immunofluorescence Images</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./Missing Data Imputation in mIF.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Chapter 3: Missing data imputation in mIF imaging</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

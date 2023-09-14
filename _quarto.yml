@@ -1,0 +1,27 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "Orals"
+  author: "Jiangmei (Ruby) Xiong"
+  date: "8/15/2023"
+  chapters:
+    - index.qmd
+    - Introduction to mIF.qmd
+    - GammaGateR.qmd
+    - Missing Data Imputation in mIF.qmd
+    - summary.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    embed-resources: true
+    self-contained-math: true
+    theme: minty
+  pdf:
+    documentclass: scrreprt
+editor: visual
+
