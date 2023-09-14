@@ -52,10 +52,11 @@ f_k(x)=G(a_k,b_k,{\gamma_k})=\frac{\lambda_k x^{a_k{\gamma_k}-1}exp\{(-x/b_k)^{{
 
 By eqref{eq1}, eqref{eq2} The expected joint log-likelihood is
 
+```{=tex}
 \begin{multline} \label{eq3}
      \mathbb E_{z|x}[\log(L(\mathbf{x}|\mathbf{z}))]=\sum^{K}_{k=1}\sum^{n}_{i=1}z_{ik}\left( \log{\gamma_k}-a_k{\gamma_k} \log b_k-log\Gamma(a_k)+(a_k{\gamma_k}-1)\log X_i-(\frac{X_i}{b_k})^{{\gamma_k}} \right)
 \end{multline}
-
+```
 The estimators of each of the $K$ terms of the expected joint log-likelihood are derived as follows:
 
 first take derivative of the expression from eqref{eq3} \begin{align*}
