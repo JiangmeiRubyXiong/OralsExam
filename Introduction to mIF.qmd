@@ -6,7 +6,7 @@ Multiplexed Immunofluorescence (mIF) Image is a recent development from Immunofl
 
 IHC/IF can only detect one biomarker for a tissue region. This limitation makes IHC/IF unable to identify more complicated expression patterns that require more than one biomarker [@sheng2023multiplex]. The development of multiplexed IHC (mIHC)/IF(mIF) image resolved this issue. Multiplexed IHC/IF image display different protein information for each plex of the image, while retaining the spatial and morphological information of the tissue [@eng2022framework]. mIHC/mIF can be seen as a stack of images, each presenting a different portion of the same tissue.
 
-![This is what it might look like if Waldo is to be analyzed in mIF style (??).](waldo.jpg){#fig-0}
+![This is what it might look like if Waldo is to be analyzed in mIF style (?Maybe?).](waldo.jpg){#fig-0}
 
 @fig-1 by @sheng2023multiplex shows several different methods for creating mIF images. It can be seen that the first two methods both uses cycles of stain-photo-removal, and the last method is a one-off step where all labels are tagged at once. @sheng2023multiplex also tabulated all multiplexd IHC/IF technologies, where the number of biomarkers that can be identified ranges from 4 to 100.
 

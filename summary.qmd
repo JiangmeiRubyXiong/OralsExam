@@ -1,14 +1,20 @@
 # Chapter 4: Future directions
 
-The missing data in mIF image can be seen as missing completely at random (MCAR). In the missing data scenarios described in @sec-imputation, none of them can be predicted. However, for the low-plex image channel imputation methods, the markers are selected by machine learning methods to maximize the accuracy. For this type of imputation, the imputation results should be taken with a grain of salt as this is missing not at random (MNAR). It might be possible to deduce the amount of bias this creates through statistical inference, but for now this is not in the scope of this project.
+In the missing data scenarios described in @sec-imputation, which channel or tisue will be missing cannot be predicted. These can be seen as missing completely at random (MCAR), i.e. the reason for missing is irrelevant with how the image looks like. However, for the low-plex image channel imputation methods, the markers are selected by machine learning methods to maximize the accuracy. These however, are missing not at random (MNAR), i.e. the reason for "missing" (channels to be imputed) are correlated with the image itself. For this reason, this type of imputation results should be taken with a grain of salt. It might be possible to deduce the amount of bias this creates through statistical inference, but for now this is not in the scope of this project. The following two considerations are ignored in the works mentioned in @sec-imputation. In the future, we can perform an evaluation and see how much the imputation results improve when the following statistical properties are considered.
 
-All methods in @sec-imputation evaluated the accuracy of their result by either comparing with the imputation outcome of a previous method or with a held-out evaluation dataset. In addition, @wu20237 in @sec-imputation2 used the imputation output for cell phenotyping and predicting patient phenotypic outcomes. In principle, this is not the best practice of subsequent analysis with the imputation outcome. Such prediction should be performed with multiple imputation at least, to obtain a reasonable estimation of confidence intervals.
+## Multiple imputation
 
-@rubin1996multiple states that it is important to be statistically valid for estimates of scientific estimands, such as population mean. Statistical validity for an estimand means an at least approximately non-biased point estimate, and an statistical test that rejects the null hypothesis no more than 5% of the time, when the nominal significance level is 5% [@rubin1996multiple; @van2018flexible]. Under such guideline, we can check the multiple imputation estimand's expectation and variance. @van2018flexible presented a clear interpretation of such, conditioning on observed data: Let $Y_{mis}$ be missing data, and $Y_{obs}$ be observed data, $Q$ be the population value and $\hat Q$ is the estimate of $Q$. The posterior distribution of $Q$ given observed data is $$
+All methods in @sec-imputation evaluated the accuracy of their result by either comparing with the imputation outcome of a previous method or with a held-out evaluation dataset. In addition, @wu20237 in @sec-imputation2 used the imputation output for cell phenotyping and predicting patient phenotypic outcomes. In principle, this is not the best practice of subsequent analysis with the imputation outcome. Point estimates from such imputation underestimates the standard deviation of the point estimates, as shown below.
+
+@rubin1996multiple states that it is important to be statistically valid for estimates of scientific estimands, such as population mean. Statistical validity for an estimand means an at least approximately non-biased point estimate, and an statistical test that rejects the null hypothesis no more than 5% of the time, when the nominal significance level is 5% [@rubin1996multiple; @van2018flexible]. Under such guideline, we can check the multiple imputation estimand's expectation and variance. @van2018flexible presented a clear interpretation of such, conditioning on observed data: Let $Y_{mis}$ be missing data, and $Y_{obs}$ be observed data, $Q$ be the population value and $\hat Q$ is the estimate of $Q$. The posterior distribution of $Q$ given observed data is 
+
+$$
 P(Q|Y_{obs})=\int P(Q|Y_{obs}, Y_{mis})P(Y_{mis}|Y_{obs})dY_{mis}
 $$
 
-The posterior mean of $Q$ is therefore $$
+The posterior mean of $Q$ is therefore 
+
+$$
 E[Q|Y_{obs}]=E[E(Q|Y_{obs}, Y_{mis})|Y_{obs}]
 $$
 
@@ -21,3 +27,22 @@ Var(Q|Y_{obs})=E[Var(Q|Y_{obs}, Y_{mis})|Y_{obs}]+Var[E(Q|Y_{obs}, Y_{mis})|Y_{o
 $$ Which can be interpreted as the within-variance of the estimate in each imputed data, and the between-variance among the repeatedly imputed data.
 
 In this case, single imputation would be an unbiased estimator. However, it will be biased in variance estimation, as it does not incorporate between-variance at all (the second proportion of the last equation RHS). Therefore, for better accuracy with estimate variance, multiple imputation should be used. The subsequent project could use the colon map data in GammaGateR project, where some channels are missing, and compare the validity of confidence interval for the estimated quantities.
+
+## Imputation with patient information
+
+As described in @wu20237, cell phenotypes are usually considered with certain prognostic information, such as patient survival, recurrence, and disease status. That is, suppose we want to estimate a certain parameter $\theta$, patient parameters $X$, we are assuming
+
+$$
+\theta=E[g(X, Y_{obs}, Y_{mis})]
+$$
+and hence 
+$$
+Y_{mis}=f(X, Y_{obs})+\epsilon, \epsilon \perp (X, Y_{obs})
+$$
+
+The existing imputation methods all uses $Y_{mis}=f(Y_{obs})+\epsilon$. That is, there exists bias of 
+$$
+f(X, Y_{obs})-f(Y_{obs})
+$$
+
+This bias can only be ignored if we assume that $Y_{mis} \perp X|Y_{obs}$. That is, patient information does not contribute to the prediction of missing data given observed data. This is a bold assumption to make, and should be avoided unless with concrete supporting prior knowledge.

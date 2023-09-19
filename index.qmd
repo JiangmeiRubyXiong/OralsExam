@@ -1,8 +1,3 @@
 # Statistical Analysis in Multiplexed Immunofluorescence Imaging {.unnumbered}
 
-This is the document for doctoral oral exam of Jiangmei Xiong. This document will walk you through the basics of multiplexed immunofluorescence image, Jiangmei's first dissertation paper, and a literature review for missing data imputation in multiplexed immunofluorescence imaging.
-
-
-
-
-
+This is the document for doctoral oral exam of Jiangmei Xiong. The topic of this oral exam is data preprocessing of mIF imaging data. This document will walk you through the basics of multiplexed immunofluorescence image, Jiangmei's first dissertation paper, and a literature review for missing data imputation in multiplexed immunofluorescence imaging.

@@ -18,6 +18,8 @@ bibliography: references.bib
 
 format:
   html:
+    html-math-method:
+      method: mathml
     embed-resources: true
     self-contained-math: true
     theme: minty
